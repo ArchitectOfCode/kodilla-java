@@ -11,22 +11,21 @@ public class StatisticsCollector {
     private double avgNumberOfCommentsPerUser;
     private double avgNumberOfCommentsPerPost;
 
-    public StatisticsCollector(Statistics statistics) {
-        this.statistics = statistics;
-    }
-
     public boolean calculateAdvStatistics(Statistics statistics) {
-
-/* TEST START
-        usersNames.add("John Smith");
-        usersNames.add("Stevie Wonder");
-        usersNames.add("Ally McBeal");
-/ TEST STOP */
-
-        if(statistics.usersNames().size() > 0 && statistics.postsCount() > 0) {
-            avgNumberOfPostsPerUser = (double)statistics.postsCount() / statistics.usersNames().size();
-            avgNumberOfCommentsPerUser = (double)statistics.commentsCount() / statistics.usersNames().size();
-            avgNumberOfCommentsPerPost = (double)statistics.commentsCount() / statistics.postsCount();
+        int noOfUsers = statistics.usersNames().size();
+        if(noOfUsers >= 0) {
+            if(noOfUsers == 0) {
+                avgNumberOfPostsPerUser = 0;
+                avgNumberOfCommentsPerUser = 0;
+            } else {
+                avgNumberOfPostsPerUser = (double)statistics.postsCount() / noOfUsers;
+                avgNumberOfCommentsPerUser = (double)statistics.commentsCount() / noOfUsers;
+            }
+            if(statistics.postsCount() > 0) {
+                avgNumberOfCommentsPerPost = (double) statistics.commentsCount() / statistics.postsCount();
+            } else {
+                avgNumberOfCommentsPerPost = 0.0;
+            }
             return true;
         } else {
             return false;

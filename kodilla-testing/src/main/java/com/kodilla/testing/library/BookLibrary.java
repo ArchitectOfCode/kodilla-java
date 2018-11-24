@@ -19,11 +19,9 @@ public class BookLibrary {
         return bookList;
     }
 
-    public List<Book> listBooksInHandsOf(LibraryUser libraryUser) {
+    public List<Book> returnBorrowedBooks(LibraryUser libraryUser) {
         List<Book> booksInHands = new ArrayList<Book>();
         if(libraryUser == null) return booksInHands;
-
-        // not implemented
-        return booksInHands;
+        return libraryDatabase.listBooksInHandsOf(libraryUser);
     }
 }

@@ -19,7 +19,13 @@ public class BookLibrary {
         return bookList;
     }
 
-    public List<Book> returnBorrowedBooks(LibraryUser libraryUser) {
+    public List<Book> returnBooks(LibraryUser libraryUser) {
+        List<Book> booksInHands = new ArrayList<Book>();
+        if(libraryUser == null) return booksInHands;
+        return libraryDatabase.listBooksInHandsOf(libraryUser);
+    }
+
+    public List<Book> listBooksInHandsOf(LibraryUser libraryUser) {
         List<Book> booksInHands = new ArrayList<Book>();
         if(libraryUser == null) return booksInHands;
         return libraryDatabase.listBooksInHandsOf(libraryUser);

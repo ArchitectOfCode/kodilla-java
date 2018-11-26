@@ -1,6 +1,7 @@
 package com.kodilla.stream;
 
 import com.kodilla.stream.beautifier.PoemBeautifier;
+import com.kodilla.stream.iterate.NumbersGenerator;
 import com.kodilla.stream.lambda.ExecuteSaySomething;
 import com.kodilla.stream.lambda.Executor;
 import com.kodilla.stream.lambda.ExpressionExecutor;
@@ -57,5 +58,8 @@ public class StreamMain {
 
         String underscoredPoem = poemToBeautify.beautify(poemByJakubSajkowski, text -> poemByJakubSajkowski.replace(" ", "_"));
         System.out.println(underscoredPoem);
+
+        System.out.println("Using Stream to generate even numbers from 1 to 20");
+        NumbersGenerator.generateEven(20);
     }
 }

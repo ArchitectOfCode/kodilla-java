@@ -1,4 +1,5 @@
 package com.kodilla.stream.lambda;
 
-public class MathExpression {
+public interface MathExpression {
+    public double calculateExpression(double a, double b);
 }

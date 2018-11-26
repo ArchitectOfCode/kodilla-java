@@ -1,4 +1,5 @@
 package com.kodilla.stream.lambda;
 
-public class Executor {
+public interface Executor {
+    public void process();
 }

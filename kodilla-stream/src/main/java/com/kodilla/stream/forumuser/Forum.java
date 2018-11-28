@@ -19,17 +19,4 @@ public final class Forum {
     public final List<ForumUser> getUserList() {
         return new ArrayList<>(forumUsers);
     }
-/*
-    public ArrayList<ForumUser> showMans() {
-        List<ForumUser> listOfMans = new ArrayList<>(forumUsers);
-        listOfMans = forumUsers.stream()
-                .filter(s -> s.gender == 'M')
-                .collect(Collectors.toList());
-        return listOfMans;
-    }
-
-    public void showWomans() {
-
-    }
-*/
 }

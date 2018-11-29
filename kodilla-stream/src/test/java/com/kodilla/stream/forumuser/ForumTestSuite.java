@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import static java.time.LocalDate.now;
 
-public class forumTestSuite {
+public class ForumTestSuite {
     // Given / Arrange
     Forum testForum = new Forum();
 

@@ -17,16 +17,8 @@ public class ArrayOperationsTestSuite {
             sum += numbers[i];
         }
         averageComputedInForLoop = (double)sum / numbers.length;
-        System.out.println("Average computed in for loop: " + averageComputedInForLoop);
+        System.out.println("Average computed in 'for' loop: " + averageComputedInForLoop);
 
         System.out.println("Average computed in Stream (static method in Interface): " + ArrayOperations.getAverage(numbers));
-
-        /*
-        continentList.stream()
-                .flatMap(continent -> continent.getCountryList().stream())
-                .collect(Collectors.toList());
-        */
-
-
     }
 }

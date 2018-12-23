@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MovieStore {
     public Map<String, List<String>> getMovies() {
@@ -30,14 +29,15 @@ public class MovieStore {
         return booksTitlesWithTranslations;
     }
 
-    public static void main(String args[]) {
-        MovieStore amazingMovies = new MovieStore();
-        String movies = amazingMovies.getMovies()
-                .entrySet()
+    public String showMovies(Map<String, List<String>> movies) {
+        return movies.entrySet()
                 .stream()
                 .flatMap(title -> title.getValue().stream())
                 .collect(Collectors.joining("!"));
+    }
 
-        System.out.print(movies);
+    public static void main(String args[]) {
+        MovieStore amazingMovies = new MovieStore();
+        System.out.println(amazingMovies.showMovies(amazingMovies.getMovies()));
     }
 }

@@ -11,8 +11,8 @@ public class IndexExceptionRunner {
             String movie = collection.get(0);
             System.out.println(movie);
 
-            String antherMovie = collection.get(2);
-            System.out.println(antherMovie);
+            String anotherMovie = collection.get(2);
+            System.out.println(anotherMovie);
         }
     }
 }

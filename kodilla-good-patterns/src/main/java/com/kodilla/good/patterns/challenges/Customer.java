@@ -13,7 +13,7 @@ public class Customer implements User {
     @Override
     public String toString() {
         return "Customer{" +
-                ", lastName='" + lastName + '\'' +
+                "lastName='" + lastName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 '}';
     }

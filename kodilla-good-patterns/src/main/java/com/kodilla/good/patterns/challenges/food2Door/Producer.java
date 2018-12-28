@@ -5,4 +5,5 @@ public interface Producer {
     public String getProduct();
     public double getQuantity();
     public boolean process();
+    public void showOffer();
 }

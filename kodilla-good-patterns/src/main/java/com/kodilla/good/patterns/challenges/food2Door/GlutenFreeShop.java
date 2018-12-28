@@ -1,11 +1,11 @@
 package com.kodilla.good.patterns.challenges.food2Door;
 
-public class FoodProducer implements Producer{
+public class GlutenFreeShop implements Producer{
     private String name;
     private String product;
     private double quantity;
 
-    public FoodProducer(String name, String product, double quantity) {
+    public GlutenFreeShop(String name, String product, double quantity) {
         this.name = name;
         this.product = product;
         this.quantity = quantity;

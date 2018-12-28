@@ -21,10 +21,8 @@ public class ProductOrderService {
         if(isOrdered) {
             mailService.inform(orderRequest.getUser());
             orderRepository.createOrder(orderRequest.getUser(), orderRequest.getOrderDate());
-            return new OrderDto(orderRequest.getUser(), true);
-        } else {
-            return new OrderDto(orderRequest.getUser(), false);
         }
+        return new OrderDto(orderRequest.getUser(), isOrdered);
     }
 
     public static void main(String[] args) {

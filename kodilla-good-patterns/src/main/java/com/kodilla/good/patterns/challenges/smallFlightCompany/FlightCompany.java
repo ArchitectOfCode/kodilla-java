@@ -73,21 +73,23 @@ public class FlightCompany {
                 .forEach(System.out::println);
     }
 
-    public void combinedFlightsFromTo(Set<Flight> timetable, String departureAirport, String arrivalAirport) {
+    public String getCombinedFlightsFromTo(Set<Flight> timetable, String departureAirport, String arrivalAirport) {
         Set<Flight> flightsFrom = getFlightsFrom(timetable, departureAirport);
         Set<Flight> flightsTo = getFlightsTo(timetable, arrivalAirport);
+        String combinedFlightsMessage = "";
 
         for(Flight flightFrom : flightsFrom) {
             for(Flight flightTo : flightsTo) {
                 if(flightTo.getDepartureAirport().equals(flightFrom.getArrivalAirport())
                         && flightFrom.getArrivalDateTime().minusMinutes(30).isBefore(flightTo.getDepartureDateTime())) {
-                    System.out.println("Departure from " + flightFrom.getDepartureAirport() + " on " + flightFrom.getDepartureDateTime() +
+                    combinedFlightsMessage = combinedFlightsMessage.concat("Departure from " + flightFrom.getDepartureAirport() + " on " + flightFrom.getDepartureDateTime() +
                             " with transfer in " + flightFrom.getArrivalAirport() + " [arrival time: " + flightFrom.getArrivalDateTime() +
                             "] to " + flightTo.getArrivalAirport() + " on " + flightTo.getDepartureDateTime() +
-                            " [arrival time: " + flightTo.getArrivalDateTime() + "].");
+                            " [arrival time: " + flightTo.getArrivalDateTime() + "].\n");
                 }
             }
         }
+        return combinedFlightsMessage;
     }
 
     public static void main(String[] args) {
@@ -106,6 +108,6 @@ public class FlightCompany {
         polWaffe.showFlights(polWaffe.getFlightsTo(polWaffe.getTimetable(), "Szczecin"));
 
         System.out.println("\nFlights from Poznań to Szczecin:");
-        polWaffe.combinedFlightsFromTo(polWaffe.getTimetable(), "Poznań",  "Szczecin");
+        System.out.println(polWaffe.getCombinedFlightsFromTo(polWaffe.getTimetable(), "Poznań",  "Szczecin"));
     }
 }

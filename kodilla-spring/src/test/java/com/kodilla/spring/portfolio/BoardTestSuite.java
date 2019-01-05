@@ -37,12 +37,12 @@ public class BoardTestSuite {
     }
 
     @Test
-    public void testTaskAdd() {
+    public void testAddAndRetrieveTasks() {
         //Given
         ApplicationContext context = new AnnotationConfigApplicationContext(BoardConfig.class);
-        TaskList toDoList = context.getBean(TaskList.class);
-        TaskList inProgressList = context.getBean(TaskList.class);
-        TaskList doneList = context.getBean(TaskList.class);
+        TaskList toDoList = (TaskList)context.getBean("toDoList");
+        TaskList inProgressList = (TaskList)context.getBean("inProgressList");
+        TaskList doneList = (TaskList)context.getBean("doneList");
         //When
         toDoList.addTask("Task to do");
         inProgressList.addTask("Task in progress");
@@ -51,6 +51,9 @@ public class BoardTestSuite {
         String toDoTask = board.getToDoList().getTasks().get(0);
         String inProgressTask = board.getInProgressList().getTasks().get(0);
         String doneTask = board.getDoneList().getTasks().get(0);
+        System.out.println("First to do task: " + toDoTask);
+        System.out.println("First in progress task: " + inProgressTask);
+        System.out.println("First done task: " + doneTask);
         //Then
         Assert.assertEquals("Task to do", toDoTask);
         Assert.assertEquals("Task in progress", inProgressTask);

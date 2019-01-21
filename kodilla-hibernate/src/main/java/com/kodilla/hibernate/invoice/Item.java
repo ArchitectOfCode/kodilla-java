@@ -23,9 +23,6 @@ public class Item {
     @Column(name = "quantity")
     private int quantity;
 
-    @Transient
-    private BigDecimal value;
-
     @ManyToOne
     @JoinColumn(name = "invoice_id")
     private Invoice invoice;
@@ -37,7 +34,6 @@ public class Item {
         this.product = product;
         this.price = price;
         this.quantity = quantity;
-        value = price.multiply(BigDecimal.valueOf(quantity));
     }
 
     public int getId() {
@@ -57,7 +53,7 @@ public class Item {
     }
 
     public BigDecimal getValue() {
-        return value;
+        return price.multiply(BigDecimal.valueOf(quantity));
     }
 
     public Invoice getInvoice() {

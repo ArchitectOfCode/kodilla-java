@@ -30,13 +30,13 @@ public class Item {
 
     @ManyToOne
     @JoinColumn(name = "invoice_id")
-    private List<Item> items = new ArrayList<>();
+    private Invoice invoice;
 
     public Item() {
     }
 
-    public Item(/*Product product, */BigDecimal price, int quantity) {
-        /*this.product = product;*/
+    public Item(Product product, BigDecimal price, int quantity) {
+        this.product = product;
         this.price = price;
         this.quantity = quantity;
         value = price.multiply(new BigDecimal(quantity));
@@ -62,8 +62,8 @@ public class Item {
         return value;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public Invoice getInvoice() {
+        return invoice;
     }
 
     private void setId(int id) {
@@ -88,7 +88,7 @@ public class Item {
         value = price.multiply(new BigDecimal(quantity));
     }
 
-    private void setItems(List<Item> items) {
-        this.items = items;
+    private void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 }

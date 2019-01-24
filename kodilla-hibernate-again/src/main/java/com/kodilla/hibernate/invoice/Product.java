@@ -18,12 +18,18 @@ public class Product {
     @Column(name = "product_name")
     private String name;
 
+    /*
     @OneToMany(
             targetEntity = Item.class,
             mappedBy = "product",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
+    private List<Item> items = new ArrayList<>();
+    */
+
+    @OneToMany
+    @JoinColumn(name = "item_id")
     private List<Item> items = new ArrayList<>();
 
     public Product() {

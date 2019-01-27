@@ -13,8 +13,11 @@ public class Item {
     @Column(name = "item_id", unique = true)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
+    @ManyToOne(
+            targetEntity = Product.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
     private Product product;
 
     @Column(name = "price")
@@ -27,6 +30,9 @@ public class Item {
     @JoinColumn(name = "invoice_id")
     private Invoice invoice;
 
+    @Transient
+    private BigDecimal value;
+
     public Item() {
     }
 
@@ -34,6 +40,7 @@ public class Item {
         this.product = product;
         this.price = price;
         this.quantity = quantity;
+        value = price.multiply(new BigDecimal(quantity));
     }
 
     public int getId() {
@@ -53,7 +60,7 @@ public class Item {
     }
 
     public BigDecimal getValue() {
-        return price.multiply(BigDecimal.valueOf(quantity));
+        return value;
     }
 
     public Invoice getInvoice() {
@@ -64,16 +71,22 @@ public class Item {
         this.id = id;
     }
 
-    private void setProduct(Product product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 
     private void setPrice(BigDecimal price) {
         this.price = price;
+        this.calculateValue();
     }
 
     private void setQuantity(int quantity) {
         this.quantity = quantity;
+        this.calculateValue();
+    }
+
+    private void calculateValue() {
+        value = price.multiply(new BigDecimal(quantity));
     }
 
     public void setInvoice(Invoice invoice) {

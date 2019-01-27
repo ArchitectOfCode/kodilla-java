@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "tasks_financial")
+@Table(name = "tasks_financial_details")
 public class TaskFinancialDetails {
     @Id
     @GeneratedValue

@@ -5,6 +5,11 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedQuery(
+        name = "Employee.retrieveEmployeesByLastName",
+        query = "FROM Employee WHERE lastName = :LAST_NAME"
+)
+
 @Entity
 @Table(name = "employees")
 public class Employee {

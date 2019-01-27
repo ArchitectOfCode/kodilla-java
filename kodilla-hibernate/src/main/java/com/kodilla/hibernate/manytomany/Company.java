@@ -5,6 +5,11 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "Company.retrieveCompaniesWithNamesStartingFor",
+        query = "SELECT * FROM companies WHERE company_name LIKE CONCAT(SUBSTRING(:COMPANY_NAME, 1, 3), '%')"
+)
+
 @Entity
 @Table(name = "companies")
 public class Company {
@@ -48,7 +53,7 @@ public class Company {
         this.name = name;
     }
 
-    public void setEmployees(List<Employee> employees) {
+    private void setEmployees(List<Employee> employees) {
         this.employees = employees;
     }
 }

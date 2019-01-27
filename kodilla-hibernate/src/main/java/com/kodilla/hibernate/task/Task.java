@@ -6,14 +6,51 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+@NamedQueries({
+        @NamedQuery(
+                name = "Task.retrieveLongTasks",
+                query = "FROM Task WHERE duration > 10"
+        ),
+        @NamedQuery(
+                name = "Task.retrieveShortTasks",
+                query = "FROM Task WHERE duration <= 10"
+        ),
+        @NamedQuery(
+                name = "Task.retrieveTasksWithDurationLongerThan",
+                query = "FROM Task WHERE duration > :DURATION"
+        )
+})
+@NamedNativeQuery(
+        name = "Task.retrieveTasksWithEnoughTime",
+        query = "SELECT * FROM tasks WHERE DATEDIFF(DATE_ADD(created, INTERVAL duration DAY), NOW()) > 5",
+        resultClass = Task.class
+)
+
 @Entity
 @Table(name = "tasks")
 public class Task {
+    @Id
+    @GeneratedValue
+    @NotNull
+    @Column(name = "id", unique=true)
     private int id;
+
+    @Column(name = "description")
     private String description;
+
+    @NotNull
+    @Column(name = "created")
     private Date created;
+
+    @Column(name = "duration")
     private int duration;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "task_financial_details_id")
     private TaskFinancialDetails taskFinancialDetails;
+
+    @ManyToOne
+    @JoinColumn(name = "taskList_id")
     private TaskList taskList;
 
     public Task() {
@@ -25,38 +62,26 @@ public class Task {
         this.duration = duration;
     }
 
-    @Id
-    @GeneratedValue
-    @NotNull
-    @Column(name = "id", unique=true)
     public int getId() {
         return id;
     }
 
-    @Column(name = "description")
     public String getDescription() {
         return description;
     }
 
-    @NotNull
-    @Column(name = "created")
     public Date getCreated() {
         return created;
     }
 
-    @Column(name = "duration")
     public int getDuration() {
         return duration;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "tasks_financial_id")
     public TaskFinancialDetails getTaskFinancialDetails() {
         return taskFinancialDetails;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "taskList_id")
     public TaskList getTaskList() {
         return taskList;
     }

@@ -116,8 +116,8 @@ public class CompanyDaoTestSuite2 {
         List<Company> companiesWithNamesStartingFor = companyDao.retrieveCompaniesWithNamesStartingFor("Grey");
 
         //Then
-        Assert.assertEquals(2, allEmployeesWithNameKovalsky.size());    // this seems to work
-        Assert.assertEquals(2, companiesWithNamesStartingFor.size());    // you can put any number and it will pass :-(
+        Assert.assertEquals(2, allEmployeesWithNameKovalsky.size());
+        Assert.assertEquals(2, companiesWithNamesStartingFor.size());
 
         //CleanUp
         try {

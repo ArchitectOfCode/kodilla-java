@@ -38,13 +38,6 @@ public class CompanyDaoTestSuite {
         greyMatter.getEmployees().add(lindaKovalsky);
         greyMatter.getEmployees().add(mirandaKovalsky);
 
-        johnSmith.getCompanies().add(softwareMachine);
-        johnSmith.getCompanies().add(greyMatter);
-        stephanieClarckson.getCompanies().add(dataMaesters);
-        lindaKovalsky.getCompanies().add(dataMaesters);
-        lindaKovalsky.getCompanies().add(greyMatter);
-        mirandaKovalsky.getCompanies().add(greyMatter);
-
         //When
         companyDao.save(softwareMachine);
         int softwareMachineId = softwareMachine.getId();
@@ -80,22 +73,15 @@ public class CompanyDaoTestSuite {
 
         Company softwareMachine = new Company("Software Machine");
         Company dataMasters = new Company("Data Masters");
-        //Company greyMatter = new Company("Grey Matter");
+        Company greyMatter = new Company("Grey Matter");
         Company greyLife = new Company("Grey Life");
 
         softwareMachine.getEmployees().add(johnSmith);
         dataMasters.getEmployees().add(stephanieClarckson);
         dataMasters.getEmployees().add(lindaKovalsky);
-        //greyMatter.getEmployees().add(johnSmith);
-        //greyMatter.getEmployees().add(lindaKovalsky);
+        greyMatter.getEmployees().add(johnSmith);
+        greyMatter.getEmployees().add(lindaKovalsky);
         greyLife.getEmployees().add(mirandaKovalsky);
-
-        johnSmith.getCompanies().add(softwareMachine);
-        //johnSmith.getCompanies().add(greyMatter);
-        stephanieClarckson.getCompanies().add(dataMasters);
-        lindaKovalsky.getCompanies().add(dataMasters);
-        //lindaKovalsky.getCompanies().add(greyMatter);
-        mirandaKovalsky.getCompanies().add(greyLife);
 
         //When
         companyDao.save(softwareMachine);
@@ -104,9 +90,9 @@ public class CompanyDaoTestSuite {
         companyDao.save(dataMasters);
         int dataMaestersId = dataMasters.getId();
         System.out.println("dataMaestersId = " + dataMaestersId);
-        //companyDao.save(greyMatter);
-        //int greyMatterId = greyMatter.getId();
-        //System.out.println("greyMatterId = " + greyMatterId);
+        companyDao.save(greyMatter);
+        int greyMatterId = greyMatter.getId();
+        System.out.println("greyMatterId = " + greyMatterId);
         companyDao.save(greyLife);
         int greyLifeId = greyLife.getId();
         System.out.println("greyLifeId = " + greyLifeId);
@@ -115,18 +101,18 @@ public class CompanyDaoTestSuite {
         List<Company> companiesWithNamesStartingFor = companyDao.retrieveCompaniesWithNamesStartingFor("Grey");
 
         //Then
-        Assert.assertEquals(2, allEmployeesWithNameKovalsky.size());    // Linda and Miranda Kovalsky
+        Assert.assertEquals(1, allEmployeesWithNameKovalsky.size());    // Linda and Miranda Kovalsky
         Assert.assertEquals(1, companiesWithNamesStartingFor.size());
 
-        /*Assert.assertEquals(2, allEmployeesWithNameKovalsky.size());    // Linda and Miranda Kovalsky
-        Assert.assertEquals(2, companiesWithNamesStartingFor.size());*/
+        Assert.assertEquals(2, allEmployeesWithNameKovalsky.size());    // Linda and Miranda Kovalsky
+        Assert.assertEquals(2, companiesWithNamesStartingFor.size());
 
         //CleanUp
         try {
             System.out.println("Clean up started.");
             companyDao.delete(softwareMachineId);
             companyDao.delete(dataMaestersId);
-            //companyDao.delete(greyMatterId);
+            companyDao.delete(greyMatterId);
             companyDao.delete(greyLifeId);
             System.out.println("Clean up finished.");
         } catch (Exception e) {

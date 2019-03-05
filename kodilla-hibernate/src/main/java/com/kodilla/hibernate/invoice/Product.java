@@ -2,6 +2,8 @@ package com.kodilla.hibernate.invoice;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -16,9 +18,13 @@ public class Product {
     @Column(name = "product_name")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "item_id")
-    private Item item;
+    @OneToMany(
+            targetEntity = Item.class,
+            mappedBy = "product",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<Item> items = new ArrayList<>();
 
     public Product() {
     }

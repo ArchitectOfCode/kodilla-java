@@ -61,10 +61,10 @@ public class CompanyDaoTestSuite {
         //CleanUp
         try {
             System.out.println("Clean up started.");
-            //companyDao.deleteAll();
-            companyDao.delete(softwareMachineId);
+            companyDao.deleteAll();
+            /*companyDao.delete(softwareMachineId);
             companyDao.delete(dataMastersId);
-            companyDao.delete(greyMatterId);
+            companyDao.delete(greyMatterId);*/
             System.out.println("Clean up finished.");
         } catch (Exception e) {
             System.out.println("Exception during clean up occur: " + e);
@@ -113,7 +113,7 @@ public class CompanyDaoTestSuite {
         System.out.println("greyLifeId = " + greyLifeId);
 
         List<Employee> allEmployeesWithNameKovalsky = employeeDao.retrieveEmployeesByLastName("Kovalsky");
-        List<Company> companiesWithNamesStartingFor = companyDao.retrieveCompaniesWithNamesStartingFor("Grey");
+        List<Company> companiesWithNamesStartingFor = companyDao.retrieveCompaniesWithNamesStartingFor("Gre");
 
         //Then
         Assert.assertEquals(2, allEmployeesWithNameKovalsky.size());
@@ -122,14 +122,16 @@ public class CompanyDaoTestSuite {
         //CleanUp
         try {
             System.out.println("Clean up started.");
-            employeeDao.delete(johnSmith);
+            /*employeeDao.delete(johnSmith);
             employeeDao.delete(stephanieClarckson);
             employeeDao.delete(lindaKovalsky);
             employeeDao.delete(mirandaKovalsky);
             companyDao.delete(softwareMachineId);
             companyDao.delete(dataMastersId);
             companyDao.delete(greyMatterId);
-            companyDao.delete(greyLifeId);
+            companyDao.delete(greyLifeId);*/
+            employeeDao.deleteAll();
+            companyDao.deleteAll();
             System.out.println("Clean up finished.");
         } catch (Exception e) {
             System.out.println("Exception during clean up occur: " + e);

@@ -15,11 +15,11 @@ public class Product {
     @NotNull
     @Column(name = "product_name")
     private String name;
-/*
+
     @ManyToOne
     @JoinColumn(name = "item_id")
     private Item item;
-*/
+
     public Product() {
     }
 

@@ -1,6 +1,7 @@
 package com.kodilla.hibernate.manytomany;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 )
 
 @Entity
+@Transactional
 @Table(name = "employees")
 public class Employee {
     @Id
@@ -27,7 +29,7 @@ public class Employee {
     @Column(name = "lastName")
     private String lastName;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany/*(cascade = CascadeType.ALL)*/
     @JoinTable(
             name = "join_company_employee",
             joinColumns = {@JoinColumn(name = "employee_id", referencedColumnName = "id")},

@@ -6,10 +6,16 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedNativeQuery(
-        name = "Company.retrieveCompaniesWithNamesStartingFor",
-        query = "SELECT * FROM companies WHERE company_name LIKE CONCAT(SUBSTRING(:COMPANY_NAME, 1, 3), '%')"
-)
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "Company.retrieveCompaniesWithNameStartingFor",
+                query = "SELECT * FROM companies WHERE company_name LIKE CONCAT(SUBSTRING(:COMPANY_NAME, 1, 3), '%')"
+        ),
+        @NamedNativeQuery(
+                name = "Company.retrieveCompaniesWithNameLike",
+                query = "SELECT * FROM companies WHERE company_name LIKE CONCAT('%', :COMPANY_NAME, '%')"
+        )
+})
 
 @Entity
 @Transactional

@@ -16,6 +16,7 @@ import java.util.List;
 public class CompanyDaoTestSuite {
     @Autowired
     CompanyDao companyDao;
+
     @Autowired
     EmployeeDao employeeDao;
 
@@ -124,7 +125,7 @@ public class CompanyDaoTestSuite {
     @Test
     public void testNamedQueries2() {
         //Given
-        Employee johnSmith = new Employee("John", "Kovalsky");
+        Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
         Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
         Employee mirandaKovalsky = new Employee("Miranda", "Kovalsky");
@@ -162,11 +163,15 @@ public class CompanyDaoTestSuite {
         System.out.println("greyLifeId = " + greyLifeId);
 
         List<Employee> allEmployeesWithNameKovalsky = employeeDao.retrieveEmployeesByLastName("Kovalsky");
-        List<Company> companiesWithNamesStartingFor = companyDao.retrieveCompaniesWithNamesStartingFor("Gre");
+        List<Employee> allEmployeesWithNameContainVals = employeeDao.retrieveEmployeesByLastNameLike("vals");
+        List<Company> companiesWithNamesStartingFor = companyDao.retrieveCompaniesWithNameStartingFor("Gre");
+        List<Company> companiesWithNamesLikeRey = companyDao.retrieveCompaniesWithNameLike("rey");
 
         //Then
-        Assert.assertEquals(3, allEmployeesWithNameKovalsky.size());
+        Assert.assertEquals(2, allEmployeesWithNameKovalsky.size());
+        Assert.assertEquals(2, allEmployeesWithNameContainVals.size());
         Assert.assertEquals(2, companiesWithNamesStartingFor.size());
+        Assert.assertEquals(2, companiesWithNamesLikeRey.size());
 
         //CleanUp
         companyDao.delete(softwareMachineId);

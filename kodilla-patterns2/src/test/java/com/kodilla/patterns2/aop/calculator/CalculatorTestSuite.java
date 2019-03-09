@@ -63,10 +63,10 @@ public class CalculatorTestSuite {
     public void testFactorial() {
         //Given
         //When
+        LOGGER.info("Testing factorial method");
         BigDecimal factorial5 = calculator.factorial(new BigDecimal("5"));
         BigDecimal result = calculator.factorial(new BigDecimal("1000"));
         //Then
-        LOGGER.info("Testing factorial method");
         assertEquals(new BigDecimal("120"), factorial5);
         assertTrue(BigDecimal.ONE.compareTo(result) < 0);
     }

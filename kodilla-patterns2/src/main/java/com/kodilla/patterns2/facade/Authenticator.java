@@ -8,11 +8,6 @@ import java.util.Random;
 public class Authenticator {
     public boolean isAuthenticated(Long userId) {
         Random random = new Random();
-        if(random.nextInt(100) > 20) {
-            return true;
-        } else {
-            return false;
-        }
-        //return random.nextBoolean();
+        return random.nextInt(100) > 20;
     }
 }

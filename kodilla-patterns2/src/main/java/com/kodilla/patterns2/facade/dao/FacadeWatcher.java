@@ -1,6 +1,6 @@
 package com.kodilla.patterns2.facade.dao;
 
-import com.kodilla.patterns2.facade.Order;
+import com.kodilla.patterns2.facade.api.OrderDto;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -16,17 +16,11 @@ import java.math.BigDecimal;
 public class FacadeWatcher {
     private static final Logger LOGGER = LoggerFactory.getLogger(FacadeWatcher.class);
 
-    @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..)) "/* +
-            "&& args(order, userId) && target(object)"*/)
-    /*public void logEvent(Order order, Long userId, Object object) {
-        LOGGER.info("We are here");
+    @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..)) " +
+            "&& args(order, userId) && target(object)")
+    public void logEvent(OrderDto order, Long userId, Object object) {
         LOGGER.info("Class: " + object.getClass().getName() + ", Args: " + order + ", " + userId);
-    }*/
-
-    public void logEvent() {
-        LOGGER.info("Starting shop facade test");
     }
-
 
     @Around("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))")
     public Object measureTime(final ProceedingJoinPoint proceedingJoinPoint) throws Throwable {

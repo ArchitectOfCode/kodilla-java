@@ -6,13 +6,19 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedQuery(
-        name = "Employee.retrieveEmployeesByLastName",
-        query = "FROM Employee WHERE lastName = :LAST_NAME"
-)
+@NamedQueries({
+        @NamedQuery(
+                name = "Employee.retrieveEmployeesByLastName",
+                query = "FROM Employee WHERE lastName = :LAST_NAME"
+        ),
+        @NamedQuery(
+                name = "Employee.retrieveEmployeesByLastNameLike",
+                query = "FROM Employee WHERE lastName LIKE CONCAT('%', :LAST_NAME, '%')"
+        )
+})
 
 @NamedNativeQuery(
-        name = "Employee.retrieveEmployeesByLastNameLike",
+        name = "Employee.nativeRetrieveEmployeesByLastNameLike",
         query = "SELECT * FROM employees WHERE last_name LIKE CONCAT('%', :LAST_NAME, '%')"
 )
 

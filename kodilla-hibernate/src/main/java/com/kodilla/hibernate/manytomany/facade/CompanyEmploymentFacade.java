@@ -29,11 +29,12 @@ public class CompanyEmploymentFacade {
             LOGGER.error(CompanyEmploymentProcessingException.ERR_EMPLOYEE_NOT_FOUND);
             throw new CompanyEmploymentProcessingException(CompanyEmploymentProcessingException.ERR_EMPLOYEE_NOT_FOUND);
         } else if(numEmployeesFound == 1) {
-            LOGGER.info("One employee with name like " + lastName + " has been found: " + employeesFound.get(0));
+            LOGGER.info("One employee with name like " + lastName + " has been found: "
+                    + employeesFound.get(0).getFirstName() + " " + employeesFound.get(0).getLastName());
             return employeesFound;
         } else {
             LOGGER.info(numEmployeesFound + " employees with name like '" + lastName + "' have been found:");
-            //employeesFound.forEach(employee -> LOGGER.info(employee.getFirstName() + " " + employee.getLastName()));
+            employeesFound.forEach(employee -> LOGGER.info(employee.getFirstName() + " " + employee.getLastName()));
             return employeesFound;
         }
     }
@@ -46,16 +47,11 @@ public class CompanyEmploymentFacade {
             LOGGER.error(CompanyEmploymentProcessingException.ERR_COMPANY_NOT_FOUND);
             throw new CompanyEmploymentProcessingException(CompanyEmploymentProcessingException.ERR_COMPANY_NOT_FOUND);
         } else if(numCompaniesFound == 1) {
-            LOGGER.info("One company with name like " + name + " has been found: " + companiesFound.get(0));
+            LOGGER.info("One company with name like " + name + " has been found: " + companiesFound.get(0).getName());
             return companiesFound;
         } else {
             LOGGER.info(numCompaniesFound + " companies with name like '" + name + "' have been found:");
-
-            //companiesFound.forEach(company -> LOGGER.info(company.getName()));
-            /*for(Company company : companiesFound) {
-                LOGGER.info(company.getName());
-            }*/
-
+            companiesFound.forEach(company -> LOGGER.info(company.getName()));
             return companiesFound;
         }
     }

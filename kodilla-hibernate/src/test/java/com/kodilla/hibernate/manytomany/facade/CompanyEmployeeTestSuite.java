@@ -40,9 +40,11 @@ public class CompanyEmployeeTestSuite {
 
         // When
         List<Employee> allEmployeesWithNameContainVals = companyEmploymentFacade.retrieveEmployeesByLastNameLike("vals");
+        List<Employee> allEmployeesWithNameContainClarck = companyEmploymentFacade.retrieveEmployeesByLastNameLike("Clarck");
 
         //Then
         Assert.assertEquals(2, allEmployeesWithNameContainVals.size());
+        Assert.assertEquals(1, allEmployeesWithNameContainClarck.size());
 
         // Clean up
         employeeDao.deleteAll();

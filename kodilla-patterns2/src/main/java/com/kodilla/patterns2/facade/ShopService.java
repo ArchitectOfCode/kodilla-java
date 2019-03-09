@@ -41,7 +41,6 @@ public class ShopService {
                 .iterator();
         while(orderIterator.hasNext()) {
             Order theOrder = orderIterator.next();
-            //po co to? int orderSize = theOrder.getItems().size();
             for(int n = 0; n < theOrder.getItems().size(); n++) {
                 if(theOrder.getItems().get(n).getProductId().equals(productId)) {
                     theOrder.getItems().remove(n);
@@ -73,7 +72,8 @@ public class ShopService {
                 return true;
             } else {
                 Random generator = new Random();
-                theOrder.setPaid(generator.nextBoolean());
+                theOrder.setPaid(generator.nextInt(100) > 20);
+                //theOrder.setPaid(generator.nextBoolean());
                 return theOrder.isPaid();
             }
         }
@@ -89,7 +89,8 @@ public class ShopService {
             boolean result = theOrder.isPaid();
             Random generator = new Random();
             if(!theOrder.isVerified()) {
-                theOrder.setVerified(result && generator.nextBoolean());
+                theOrder.setVerified(result && generator.nextInt(100) > 20);
+                //theOrder.setVerified(result && generator.nextBoolean());
             }
             return theOrder.isVerified();
         }
